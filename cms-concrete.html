@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CMS Concrete Pro</title>
+<meta name="description" content="CMS Concrete Pro LLC — licensed, insured, bilingual concrete contractor in Mableton, GA. Driveways, patios, foundations, repairs and stamped concrete.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: job-site board. Full-bleed poured hero, hazard-stripe dividers,
+   services as spec sheets (photo + PSI/thickness readout), stamped-metal badges. */
+:root{
+  --slab:#16181a;        /* wet concrete, page ground */
+  --slab-2:#202326;      /* cured slab, panels */
+  --aggregate:#2e3236;   /* lines, borders */
+  --dust:#b9b4aa;        /* muted text, warm grey from cement dust */
+  --chalk:#efece6;       /* primary text */
+  --hivis:#f5b800;       /* safety yellow, the one loud thing */
+  --clay:#b5532a;        /* Georgia red clay, secondary */
+  --display:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --body:"Barlow", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --gutter:clamp(16px,4vw,48px);
+  --max:1240px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--slab);color:var(--chalk);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hivis);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+h1,h2,h3{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:.01em;margin:0;text-wrap:balance}
+.label{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--hivis)}
+[data-lang="es"] [lang="en"], [data-lang="en"] [lang="es"]{display:none!important}
+
+/* hazard tape */
+.tape{height:14px;background:repeating-linear-gradient(-45deg,var(--hivis) 0 18px,var(--slab) 18px 36px)}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--slab) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--aggregate)}
+.bar .wrap{display:flex;align-items:center;gap:20px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.logo b{display:grid;place-items:center;width:42px;height:42px;background:var(--hivis);color:var(--slab);font:900 20px/1 var(--display)}
+.logo span{font:900 22px/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.logo small{display:block;font:500 10px/1.3 var(--mono);letter-spacing:.16em;color:var(--dust)}
+.nav{display:flex;gap:22px}
+.nav a{text-decoration:none;font:600 14px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--dust)}
+.nav a:hover{color:var(--chalk)}
+.lang{display:flex;border:2px solid var(--aggregate)}
+.lang button{all:unset;cursor:pointer;padding:7px 11px;font:600 12px/1 var(--mono);letter-spacing:.1em;color:var(--dust)}
+.lang button[aria-pressed="true"]{background:var(--hivis);color:var(--slab)}
+.call{display:inline-flex;align-items:center;gap:8px;background:var(--hivis);color:var(--slab);text-decoration:none;font:700 15px/1 var(--body);padding:12px 16px;white-space:nowrap}
+.call:hover{background:var(--chalk)}
+@media (max-width:900px){.nav{display:none}}
+@media (max-width:520px){.bar .call .num{display:none}.logo small{display:none}}
+
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--aggregate)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(22,24,26,.94) 0%,rgba(22,24,26,.78) 45%,rgba(22,24,26,.25) 100%)}
+.hero .wrap{padding-block:clamp(72px,12vw,150px) clamp(56px,8vw,96px)}
+.hero h1{font-size:clamp(56px,10.5vw,148px);max-width:9.5ch}
+.hero h1 em{font-style:normal;color:var(--hivis)}
+.hero p{max-width:46ch;font-size:clamp(17px,1.6vw,20px);color:var(--chalk);margin:22px 0 30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:700 16px/1 var(--body);text-transform:uppercase;letter-spacing:.05em;padding:17px 22px;border:2px solid var(--hivis)}
+.btn.solid{background:var(--hivis);color:var(--slab)}
+.btn.ghost{color:var(--chalk);border-color:var(--chalk)}
+.btn:hover{transform:translateY(-2px)}
+.stamp-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
+.stamp{display:flex;align-items:center;gap:9px;padding:10px 14px;border:2px solid var(--chalk);font:600 13px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:rgba(22,24,26,.55)}
+.stamp svg{width:18px;height:18px;flex:none;color:var(--hivis)}
+
+/* credentials strip */
+.creds{background:var(--hivis);color:var(--slab)}
+.creds .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.cred{padding:26px 20px;border-left:2px solid rgba(22,24,26,.25)}
+.cred:first-child{border-left:0}
+.cred strong{display:block;font:900 clamp(30px,3.6vw,44px)/1 var(--display);text-transform:uppercase}
+.cred span{font:600 14px/1.35 var(--body);text-transform:uppercase;letter-spacing:.04em}
+@media (max-width:760px){.creds .wrap{grid-template-columns:repeat(2,1fr)}.cred:nth-child(3){border-left:0}.cred:nth-child(n+3){border-top:2px solid rgba(22,24,26,.25)}}
+
+/* section head */
+section{padding-block:clamp(64px,9vw,112px)}
+.head{display:grid;grid-template-columns:1fr minmax(0,44ch);gap:24px 48px;align-items:end;margin-bottom:44px}
+.head h2{font-size:clamp(44px,6.5vw,88px)}
+.head p{margin:0;color:var(--dust)}
+@media (max-width:820px){.head{grid-template-columns:1fr}}
+
+/* services: spec sheets */
+.services{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:22px}
+.svc{background:var(--slab-2);border:1px solid var(--aggregate);display:flex;flex-direction:column;min-width:0}
+.svc figure{margin:0;position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--aggregate)}
+.svc figure img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.svc:hover figure img{transform:scale(1.04)}
+.svc .tag{position:absolute;left:0;top:14px;background:var(--hivis);color:var(--slab);font:600 11px/1 var(--mono);letter-spacing:.12em;padding:7px 10px;text-transform:uppercase}
+.svc .body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.svc h3{font-size:34px}
+.svc p{margin:0;color:var(--dust);font-size:16px}
+.spec{margin-top:auto;display:grid;grid-template-columns:repeat(2,1fr);border-top:1px dashed var(--aggregate);padding-top:14px;gap:8px 16px}
+.spec div{font:500 12px/1.3 var(--mono);color:var(--dust);text-transform:uppercase;letter-spacing:.06em}
+.spec b{display:block;font:600 15px/1.2 var(--mono);color:var(--chalk);font-variant-numeric:tabular-nums}
+.also{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.also .label{margin-right:8px}
+.chip{border:1px solid var(--aggregate);padding:8px 12px;font:500 14px/1 var(--body);color:var(--chalk)}
+
+/* process */
+.process{background:var(--slab-2);border-block:1px solid var(--aggregate)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s}
+.step{padding:26px 24px 28px;border-left:1px solid var(--aggregate);min-width:0}
+.step:first-child{border-left:0}
+.step .n{font:900 64px/1 var(--display);color:var(--hivis)}
+.step h3{font-size:28px;margin:10px 0 8px}
+.step p{margin:0;color:var(--dust);font-size:16px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}.step:nth-child(3){border-left:0}.step:nth-child(n+3){border-top:1px solid var(--aggregate)}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}.step{border-left:0;border-top:1px solid var(--aggregate)}.step:first-child{border-top:0}}
+
+/* why / bilingual */
+.why{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.why h2{font-size:clamp(44px,6vw,80px)}
+.why h2 em{font-style:normal;color:var(--hivis)}
+.why ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+.why li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start}
+.why li svg{width:22px;height:22px;color:var(--hivis);margin-top:3px}
+.why li b{display:block;font-weight:700}
+.why li span{color:var(--dust);font-size:16px}
+.habla{border:3px solid var(--hivis);padding:clamp(24px,4vw,40px);position:relative}
+.habla::before{content:"";position:absolute;inset:8px;border:1px dashed var(--aggregate);pointer-events:none}
+.habla .big{font:900 clamp(40px,5.5vw,72px)/.95 var(--display);text-transform:uppercase}
+.habla .big span{display:block}
+.habla .big span:last-child{color:var(--hivis)}
+.habla p{color:var(--dust);margin:18px 0 0}
+@media (max-width:860px){.why{grid-template-columns:1fr}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:48px}
+.contact h2{font-size:clamp(44px,6vw,84px)}
+.phone{display:block;font:900 clamp(44px,7vw,84px)/1 var(--display);color:var(--hivis);text-decoration:none;margin:18px 0 6px;font-variant-numeric:tabular-nums}
+.info{display:grid;gap:14px;margin-top:26px}
+.info div{display:grid;grid-template-columns:110px 1fr;gap:12px;border-top:1px solid var(--aggregate);padding-top:14px;min-width:0}
+.info dt{font:600 12px/1.6 var(--mono);color:var(--dust);text-transform:uppercase;letter-spacing:.1em}
+.info dd{margin:0;overflow-wrap:anywhere}
+form{background:var(--slab-2);border:1px solid var(--aggregate);padding:clamp(20px,3vw,32px);display:grid;gap:16px;min-width:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+label{display:grid;gap:7px;font:600 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dust)}
+input,select,textarea{font:400 16px/1.4 var(--body);color:var(--chalk);background:var(--slab);border:1px solid var(--aggregate);padding:13px 14px;width:100%;border-radius:0}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--hivis);outline-offset:0;border-color:var(--hivis)}
+textarea{min-height:110px;resize:vertical}
+form .btn{justify-content:center;cursor:pointer;font-family:var(--body)}
+.ok{margin:0;padding:14px;border:2px solid var(--hivis);color:var(--chalk)}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--aggregate);padding-block:30px;color:var(--dust);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+
+/* mobile sticky call */
+.mcall{display:none}
+@media (max-width:640px){
+  .mcall{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:0;padding-bottom:env(safe-area-inset-bottom,0px);background:var(--hivis)}
+  .mcall a{flex:1;text-align:center;padding:15px 8px;font:700 15px/1 var(--body);text-transform:uppercase;letter-spacing:.05em;text-decoration:none;color:var(--slab)}
+  .mcall a+a{border-left:2px solid rgba(22,24,26,.3)}
+  footer{padding-bottom:80px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.btn:hover{transform:none}}
+</style>
+</head>
+<body data-lang="en">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="CMS Concrete Pro home">
+      <b>CMS</b>
+      <div><span>CMS Concrete</span><small>PRO LLC · MABLETON, GA</small></div>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services"><span lang="en">Services</span><span lang="es">Servicios</span></a>
+      <a href="#process"><span lang="en">How we work</span><span lang="es">Cómo trabajamos</span></a>
+      <a href="#why"><span lang="en">Why CMS</span><span lang="es">Por qué CMS</span></a>
+      <a href="#contact"><span lang="en">Contact</span><span lang="es">Contacto</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" id="btn-en" aria-pressed="true">EN</button>
+      <button type="button" id="btn-es" aria-pressed="false">ES</button>
+    </div>
+    <a class="call" href="tel:+14042011892">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>
+      <span class="num">404-201-1892</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3IhAMIX42DDpwZgO509ZjMiFEA8/hf_20261009_105317_d16e8723-233b-45ae-80f4-78d76e34a77f_min.webp" alt="Concrete crew pouring and screeding a slab at a Georgia job site">
+    <div class="wrap">
+      <div class="label"><span lang="en">Concrete contractor · Metro Atlanta</span><span lang="es">Contratista de concreto · Área de Atlanta</span></div>
+      <h1 style="margin-top:16px"><span lang="en">Poured <em>right</em> the first time.</span><span lang="es">Bien <em>colado</em> desde el inicio.</span></h1>
+      <p><span lang="en">Driveways, patios, foundations, repairs and stamped concrete for homes and businesses across Georgia. 20+ years on the job.</span><span lang="es">Entradas, patios, cimientos, reparaciones y concreto estampado para casas y negocios en todo Georgia. Más de 20 años de experiencia.</span></p>
+      <div class="ctas">
+        <a class="btn solid" href="#contact"><span lang="en">Get a free estimate</span><span lang="es">Cotización gratis</span></a>
+        <a class="btn ghost" href="tel:+14042011892"><span lang="en">Call 404-201-1892</span><span lang="es">Llame 404-201-1892</span></a>
+      </div>
+      <div class="stamp-row">
+        <div class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><span lang="en">Licensed</span><span lang="es">Con licencia</span></div>
+        <div class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="M3 10h18"/></svg><span lang="en">Insured</span><span lang="es">Asegurado</span></div>
+        <div class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 5h9v7H8l-4 3z"/><path d="M13 9h7v7l-3-2h-4z"/></svg>English · Español</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="creds">
+    <div class="wrap">
+      <div class="cred"><strong>20+</strong><span lang="en">Years in concrete</span><span lang="es">Años en concreto</span></div>
+      <div class="cred"><strong lang="en">Licensed</strong><strong lang="es">Licencia</strong><span lang="en">Georgia LLC since 2015</span><span lang="es">LLC en Georgia desde 2015</span></div>
+      <div class="cred"><strong lang="en">Insured</strong><strong lang="es">Seguro</strong><span lang="en">Your property is covered</span><span lang="es">Su propiedad protegida</span></div>
+      <div class="cred"><strong>EN / ES</strong><span lang="en">We speak your language</span><span lang="es">Hablamos su idioma</span></div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label"><span lang="en">What we pour</span><span lang="es">Lo que hacemos</span></div>
+          <h2 style="margin-top:12px"><span lang="en">Services</span><span lang="es">Servicios</span></h2>
+        </div>
+        <p><span lang="en">Every job starts with proper grading, compacted base and the right reinforcement. That's what keeps your slab from cracking in five years.</span><span lang="es">Cada trabajo empieza con buena nivelación, base compactada y el refuerzo correcto. Eso evita que su concreto se agriete en cinco años.</span></p>
+      </div>
+
+      <div class="services">
+        <article class="svc">
+          <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3IhAMIX42DDpwZgO509ZjMiFEA8/hf_20261009_105351_3d6ea280-b6b8-474c-9fe1-a7a11fc592c9_min.webp" alt="New broom-finish concrete driveway"><figcaption class="tag"><span lang="en">Residential</span><span lang="es">Residencial</span></figcaption></figure>
+          <div class="body">
+            <h3><span lang="en">Driveways</span><span lang="es">Entradas de auto</span></h3>
+            <p><span lang="en">New pours and full tear-out replacements. Broom finish for grip, clean control joints, built to take daily traffic.</span><span lang="es">Entradas nuevas y reemplazos completos. Acabado de escoba antideslizante, juntas limpias, hechas para el tráfico diario.</span></p>
+            <div class="spec"><div><span lang="en">Typical slab</span><span lang="es">Espesor típico</span><b>4–6 in</b></div><div><span lang="en">Mix</span><span lang="es">Mezcla</span><b>4,000 PSI</b></div></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3IhAMIX42DDpwZgO509ZjMiFEA8/hf_20261009_105426_ecab3c43-3286-42fd-b84e-0f347de8887c_min.webp" alt="Backyard concrete patio with saw-cut joints"><figcaption class="tag"><span lang="en">Outdoor living</span><span lang="es">Exteriores</span></figcaption></figure>
+          <div class="body">
+            <h3>Patios</h3>
+            <p><span lang="en">Backyard slabs, walkways and sidewalks sloped to shed water away from your house.</span><span lang="es">Patios, andadores y banquetas con la pendiente correcta para alejar el agua de su casa.</span></p>
+            <div class="spec"><div><span lang="en">Typical slab</span><span lang="es">Espesor típico</span><b>4 in</b></div><div><span lang="en">Slope</span><span lang="es">Pendiente</span><b>¼ in / ft</b></div></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3IhAMIX42DDpwZgO509ZjMiFEA8/hf_20261009_105452_dbd51cd5-e8cd-4886-a27f-e21347426b85_min.webp" alt="Concrete foundation with rebar in wooden forms"><figcaption class="tag"><span lang="en">Structural</span><span lang="es">Estructural</span></figcaption></figure>
+          <div class="body">
+            <h3><span lang="en">Foundations</span><span lang="es">Cimientos</span></h3>
+            <p><span lang="en">Footings, slabs and foundation work for new builds, additions and commercial projects. Formed, reinforced and poured to plan.</span><span lang="es">Zapatas, losas y cimientos para obra nueva, ampliaciones y proyectos comerciales. Cimbrado, armado y colado según plano.</span></p>
+            <div class="spec"><div><span lang="en">Reinforcement</span><span lang="es">Refuerzo</span><b>#4 rebar</b></div><div><span lang="en">For</span><span lang="es">Para</span><b lang="en">Res + Comm</b><b lang="es">Res + Com</b></div></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3IhAMIX42DDpwZgO509ZjMiFEA8/hf_20261009_105530_c4d29124-8261-46de-a45e-42ace777d482_min.webp" alt="Worker repairing a cracked concrete sidewalk"><figcaption class="tag"><span lang="en">Fix it right</span><span lang="es">Reparación</span></figcaption></figure>
+          <div class="body">
+            <h3><span lang="en">Repairs</span><span lang="es">Reparaciones</span></h3>
+            <p><span lang="en">Cracked, sunken or broken concrete. We saw-cut the damage, fix the base underneath and pour back clean.</span><span lang="es">Concreto agrietado, hundido o roto. Cortamos la parte dañada, corregimos la base y volvemos a colar limpio.</span></p>
+            <div class="spec"><div><span lang="en">Includes</span><span lang="es">Incluye</span><b lang="en">Saw-cutting</b><b lang="es">Corte</b></div><div><span lang="en">Plus</span><span lang="es">Además</span><b lang="en">Demolition</b><b lang="es">Demolición</b></div></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <figure><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_3IhAMIX42DDpwZgO509ZjMiFEA8/hf_20261009_105553_49ff2a11-8921-497c-8bd7-713deb2dfba4_min.webp" alt="Stamped concrete patio in a slate pattern"><figcaption class="tag"><span lang="en">Decorative</span><span lang="es">Decorativo</span></figcaption></figure>
+          <div class="body">
+            <h3><span lang="en">Stamped concrete</span><span lang="es">Concreto estampado</span></h3>
+            <p><span lang="en">The look of slate, stone or brick at a fraction of the cost. Colored, stamped and sealed to last.</span><span lang="es">La apariencia de pizarra, piedra o ladrillo por mucho menos. Pigmentado, estampado y sellado para durar.</span></p>
+            <div class="spec"><div><span lang="en">Patterns</span><span lang="es">Diseños</span><b lang="en">Slate · Stone · Brick</b><b lang="es">Pizarra · Piedra · Ladrillo</b></div><div><span lang="en">Finish</span><span lang="es">Acabado</span><b lang="en">Sealed</b><b lang="es">Sellado</b></div></div>
+          </div>
+        </article>
+
+        <article class="svc" style="background:var(--hivis);color:var(--slab);border-color:var(--hivis)">
+          <div class="body" style="justify-content:space-between;gap:24px">
+            <div>
+              <div class="label" style="color:var(--slab)"><span lang="en">Not sure what you need?</span><span lang="es">¿No sabe qué necesita?</span></div>
+              <h3 style="font-size:52px;margin-top:14px"><span lang="en">We'll come look at it.</span><span lang="es">Vamos a verlo.</span></h3>
+              <p style="color:var(--slab);margin-top:14px"><span lang="en">Free on-site estimate. We measure, explain your options and give you a written price.</span><span lang="es">Cotización gratis en sitio. Medimos, le explicamos sus opciones y le damos un precio por escrito.</span></p>
+            </div>
+            <a class="btn" href="tel:+14042011892" style="background:var(--slab);color:var(--hivis);border-color:var(--slab);justify-content:center">404-201-1892</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="also">
+        <span class="label"><span lang="en">Also:</span><span lang="es">También:</span></span>
+        <span class="chip"><span lang="en">Sidewalks</span><span lang="es">Banquetas</span></span>
+        <span class="chip"><span lang="en">Walkways</span><span lang="es">Andadores</span></span>
+        <span class="chip"><span lang="en">Pavers</span><span lang="es">Adoquines</span></span>
+        <span class="chip"><span lang="en">Concrete cutting</span><span lang="es">Corte de concreto</span></span>
+        <span class="chip"><span lang="en">Demolition</span><span lang="es">Demolición</span></span>
+        <span class="chip"><span lang="en">Framing</span><span lang="es">Cimbra</span></span>
+        <span class="chip"><span lang="en">Bench installs</span><span lang="es">Instalación de bancas</span></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="tape" aria-hidden="true"></div>
+
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label"><span lang="en">Start to finish</span><span lang="es">De principio a fin</span></div>
+          <h2 style="margin-top:12px"><span lang="en">How we work</span><span lang="es">Cómo trabajamos</span></h2>
+        </div>
+        <p><span lang="en">No surprises. You know the price, the schedule and who's showing up.</span><span lang="es">Sin sorpresas. Usted sabe el precio, las fechas y quién llega a trabajar.</span></p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3><span lang="en">Estimate</span><span lang="es">Cotización</span></h3><p><span lang="en">We visit, measure and give you a written quote. Free.</span><span lang="es">Visitamos, medimos y le damos una cotización por escrito. Gratis.</span></p></div>
+        <div class="step"><div class="n">2</div><h3><span lang="en">Prep</span><span lang="es">Preparación</span></h3><p><span lang="en">Demo, grading, compacted gravel base, forms and rebar.</span><span lang="es">Demolición, nivelación, base de grava compactada, cimbra y varilla.</span></p></div>
+        <div class="step"><div class="n">3</div><h3><span lang="en">Pour</span><span lang="es">Colado</span></h3><p><span lang="en">Placed, screeded, finished and jointed by our own crew.</span><span lang="es">Colado, reglado, acabado y con juntas por nuestro propio equipo.</span></p></div>
+        <div class="step"><div class="n">4</div><h3><span lang="en">Cure + cleanup</span><span lang="es">Curado + limpieza</span></h3><p><span lang="en">We clean the site and tell you when it's safe to drive on.</span><span lang="es">Limpiamos y le decimos cuándo puede pasar con el carro.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tape" aria-hidden="true"></div>
+
+  <section id="why">
+    <div class="wrap why">
+      <div>
+        <div class="label"><span lang="en">Why CMS</span><span lang="es">Por qué CMS</span></div>
+        <h2 style="margin-top:12px"><span lang="en">Solid foundations. <em>Strong</em> partnerships.</span><span lang="es">Bases sólidas. Relaciones <em>fuertes</em>.</span></h2>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg><div><b><span lang="en">Licensed and insured</span><span lang="es">Con licencia y asegurado</span></b><span lang="en">A registered Georgia LLC with coverage on every job.</span><span lang="es">LLC registrada en Georgia con seguro en cada trabajo.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg><div><b><span lang="en">20+ years of experience</span><span lang="es">Más de 20 años de experiencia</span></b><span lang="en">Residential and commercial, from small repairs to full foundations.</span><span lang="es">Residencial y comercial, desde reparaciones hasta cimientos completos.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg><div><b><span lang="en">Written estimates</span><span lang="es">Cotizaciones por escrito</span></b><span lang="en">Warranty details explained up front for each service.</span><span lang="es">Le explicamos la garantía de cada servicio desde el inicio.</span></div></li>
+        </ul>
+      </div>
+      <div class="habla">
+        <div class="big"><span>We speak English.</span><span>Hablamos español.</span></div>
+        <p><span lang="en">Talk to us in the language you're comfortable with. Same crew, same quality, no miscommunication on your job.</span><span lang="es">Hable con nosotros en el idioma que prefiera. El mismo equipo, la misma calidad, sin malentendidos en su proyecto.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tape" aria-hidden="true"></div>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <div class="label"><span lang="en">Free estimates</span><span lang="es">Cotizaciones gratis</span></div>
+        <h2 style="margin-top:12px"><span lang="en">Let's talk about your project.</span><span lang="es">Hablemos de su proyecto.</span></h2>
+        <a class="phone" href="tel:+14042011892">404-201-1892</a>
+        <dl class="info">
+          <div><dt>Email</dt><dd>cmsconcrete2@yahoo.com</dd></div>
+          <div><dt><span lang="en">Hours</span><span lang="es">Horario</span></dt><dd><span lang="en">Mon–Fri, 7:00 AM – 6:00 PM</span><span lang="es">Lun–Vie, 7:00 AM – 6:00 PM</span></dd></div>
+          <div><dt><span lang="en">Based in</span><span lang="es">Ubicación</span></dt><dd><span lang="en">Mableton, GA · Serving Metro Atlanta</span><span lang="es">Mableton, GA · Servimos el área de Atlanta</span></dd></div>
+        </dl>
+      </div>
+
+      <form id="quote" novalidate>
+        <div class="row">
+          <label for="f-name"><span lang="en">Name</span><span lang="es">Nombre</span><input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-phone"><span lang="en">Phone</span><span lang="es">Teléfono</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></label>
+        </div>
+        <div class="row">
+          <label for="f-service"><span lang="en">Service</span><span lang="es">Servicio</span>
+            <select id="f-service" name="service">
+              <option data-en="Driveway" data-es="Entrada de auto">Driveway</option>
+              <option data-en="Patio" data-es="Patio">Patio</option>
+              <option data-en="Foundation" data-es="Cimientos">Foundation</option>
+              <option data-en="Repair" data-es="Reparación">Repair</option>
+              <option data-en="Stamped concrete" data-es="Concreto estampado">Stamped concrete</option>
+              <option data-en="Other" data-es="Otro">Other</option>
+            </select>
+          </label>
+          <label for="f-lang"><span lang="en">Preferred language</span><span lang="es">Idioma preferido</span>
+            <select id="f-lang" name="language"><option>English</option><option>Español</option></select>
+          </label>
+        </div>
+        <label for="f-msg"><span lang="en">Project details</span><span lang="es">Detalles del proyecto</span><textarea id="f-msg" name="message"></textarea></label>
+        <button class="btn solid" type="submit"><span lang="en">Request free estimate</span><span lang="es">Pedir cotización gratis</span></button>
+        <p class="ok" id="ok" hidden><span lang="en">Thanks! We'll call you back within one business day.</span><span lang="es">¡Gracias! Le llamaremos en un día hábil.</span></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 CMS Concrete Pro LLC · Mableton, GA</span>
+    <span><span lang="en">Licensed · Insured · Bilingual</span><span lang="es">Con licencia · Asegurado · Bilingüe</span></span>
+  </div>
+</footer>
+
+<div class="mcall">
+  <a href="tel:+14042011892"><span lang="en">Call now</span><span lang="es">Llamar</span></a>
+  <a href="#contact"><span lang="en">Free estimate</span><span lang="es">Cotización</span></a>
+</div>
+
+<script>
+(function(){
+  var body=document.body, en=document.getElementById('btn-en'), es=document.getElementById('btn-es');
+  function set(l){
+    body.dataset.lang=l; document.documentElement.lang=l;
+    en.setAttribute('aria-pressed', l==='en'); es.setAttribute('aria-pressed', l==='es');
+    document.querySelectorAll('option[data-en]').forEach(function(o){o.textContent=o.dataset[l]});
+    try{localStorage.setItem('cms-lang',l)}catch(e){}
+  }
+  en.addEventListener('click',function(){set('en')});
+  es.addEventListener('click',function(){set('es')});
+  var saved=null; try{saved=localStorage.getItem('cms-lang')}catch(e){}
+  set(saved || ((navigator.language||'').toLowerCase().indexOf('es')===0 ? 'es' : 'en'));
+  document.getElementById('quote').addEventListener('submit',function(e){
+    e.preventDefault(); document.getElementById('ok').hidden=false;
+  });
+})();
+</script>
+</body>
+</html>
